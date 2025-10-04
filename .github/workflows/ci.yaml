@@ -1,0 +1,30 @@
+name: word-count
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+job:
+  test:
+    run-on: ubuntu-latest
+
+    steps:
+      - name: Setup Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install Dependencies
+        run: pip install pytest
+
+      - name: Run tests
+        run: pytest tests/
+
+
